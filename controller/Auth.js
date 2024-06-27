@@ -15,7 +15,8 @@ exports.createUser = async (req, res) => {
       async function (err, hashedPassword) {
         const user = new User({ ...req.body, password: hashedPassword, salt });
         const doc = await user.save();
-
+        console.log(user);
+        console.log(doc);
         req.login(sanitizeUser(doc), (err) => {
           // this also calls serializer and adds to session
           if (err) {
